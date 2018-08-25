@@ -3,6 +3,6 @@
 it=rename
 source "${it}.sh"
 
-@test "$it: FAILS" {
-  false
+@test "$it: does nothing if given no input" {
+  skip
 }
