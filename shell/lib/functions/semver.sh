@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
 FUNC=semver_bash
-. ${FUNCTION_DIR:-.}/${FUNC}.sh
+# shellcheck source=./semver_bash.sh
+. "${FUNCTION_DIR:-.}/${FUNC}.sh"
 
 eval "
 semver() {

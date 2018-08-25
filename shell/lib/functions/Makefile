@@ -1,12 +1,16 @@
 DEFAULT: help
-MAKEFLAGS += --keep-going
 
-.PHONY: test unit help FORCE
+.PHONY: help FORCE test unit bats shellcheck
 UNIT_TEST_DIR = Tests/unit
-UNIT_TESTS = $(wildcard $(UNIT_TEST_DIR)/*.bats)
+UNIT_TEST_BATS = $(wildcard $(UNIT_TEST_DIR)/*.bats)
+FUNCTIONS = $(wildcard *.sh)
 
 test: unit
-unit: $(UNIT_TESTS)
+unit: bats shellcheck
+
+bats: $(UNIT_TEST_BATS)
+shellcheck:
+	shellcheck --check-sourced --external-sources $(FUNCTIONS)
 
 $(UNIT_TEST_DIR)/%: export FUNCTION_DIR=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 $(UNIT_TEST_DIR)/%: FORCE
