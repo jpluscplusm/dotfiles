@@ -1,7 +1,7 @@
 #!/usr/bin/env bats
 
 it=add
-source "add.sh"
+source "${it}.sh"
 
 @test "$it: returns 2 when given 1 and 1" {
   input="1\n1\n"
